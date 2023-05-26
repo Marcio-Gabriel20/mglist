@@ -24,17 +24,17 @@ public class Game {
     private Long id;
     private String title;
 
-    @Column(name = "game_year")
+    @Column(name = "game_year") // a palavra "year" é palavra reservada no banco de dados, então o ela está sendo alterada para "game_year"
     private Integer year;
     private String genre;
     private String platforms;
     private Double score;
     private String imgUrl;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT") // um 'VARCHAR' só vai até 255 caracteres, então o tipo está sendo alterado para 'TEXT' com o objetivo de alcançar maiores dimensões
     private String shortDescription;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT") // um 'VARCHAR' só vai até 255 caracteres, então o tipo está sendo alterado para 'TEXT' com o objetivo de alcançar maiores dimensões
     private String longDescription;
 
 }
