@@ -1,6 +1,7 @@
 package com.marcio.mglist.dto;
 
 import com.marcio.mglist.entities.Game;
+import com.marcio.mglist.projections.GameMinProjection;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,15 @@ public class GameMinDTO {
         year = game.getYear();
         imgUrl = game.getImgUrl();
         shortDescription = game.getShortDescription();
+    }
+
+    public GameMinDTO(GameMinProjection gameMinProjection) {
+        
+        id = gameMinProjection.getId();
+        title = gameMinProjection.getTitle();
+        year = gameMinProjection.getYear();
+        imgUrl = gameMinProjection.getImgUrl();
+        shortDescription = gameMinProjection.getShortDescription();
     }
 
 }

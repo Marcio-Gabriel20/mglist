@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.marcio.mglist.dto.GameDTO;
 import com.marcio.mglist.dto.GameMinDTO;
 import com.marcio.mglist.entities.Game;
+import com.marcio.mglist.projections.GameMinProjection;
 import com.marcio.mglist.repositories.GameRepository;
 
 @Service
@@ -31,6 +32,17 @@ public class GameService {
     public List<GameMinDTO> findAll() {
         
         List<Game> result = gameRepository.findAll();
+
+        List<GameMinDTO> resultDTO = result.stream().map(x -> new GameMinDTO(x)).toList(); // transforma a lista de 'Games' em uma lista de 'GameMinDTO'
+
+        return resultDTO;
+
+    }
+
+    @Transactional(readOnly = true) // para obdecer aos propriedades ACID
+    public List<GameMinDTO> findByList(Long gameListId) {
+        
+        List<GameMinProjection> result = gameRepository.searchByList(gameListId);
 
         List<GameMinDTO> resultDTO = result.stream().map(x -> new GameMinDTO(x)).toList(); // transforma a lista de 'Games' em uma lista de 'GameMinDTO'
 
